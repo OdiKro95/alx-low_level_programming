@@ -1,10 +1,12 @@
 #include "main.h"
 
 /**
- * main - this code prints the word _putchar
+ * main - check the code for School students
  *
- * Return: Always 0, when sucessful.
-*/
+ * Program that prints _putchar, followed by a new line
+ *
+ * Return: always 0 (success)
+ */
 
 int main(void)
 {
