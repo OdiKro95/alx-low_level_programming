@@ -23,4 +23,3 @@ Task 9-101-crackme_password is a file that contains the password for the crackme
 File main.h is the header file with the functions prototypes.
 
 File _putchar.c is the file that contains the _putchar function.
-
