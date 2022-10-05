@@ -1,73 +1,45 @@
 #include <stdlib.h>
+#include "main.h"
+
 /**
- * strtow - char
- * @str: pointer to string params
- * Return: char
+ * *argstostr - concatenates all the arguments of the program
+ * @ac: number of arguments
+ * @av: array of arguments
+ *
+ * Return: Pointer to the new string (Success), NULL (Error)
  */
-char **strtow(char *str)
+char *argstostr(int ac, char **av)
 {
-int i = 0, j = 0, k = 0;
-int len = 0, count = 0;
-char **f, *col;
-if (!str || !*str)
-{
-return (NULL);
-}
-while (*(str + i))
-{
-if (*(str + i) != ' ')
-{
-if (*(str + i + 1) == ' ' || *(str + i + 1) == 0)
-{
-count += 1;
-}
-}
-i++;
-}
-if (count == 0)
-{
-return (NULL);
-}
-count += 1;
-f = malloc(sizeof(char *) * count);
-if (!f)
-{
-return (NULL);
-}
-i = 0;
-while (*str)
-{
-while (*str == ' ' && *str)
-{
-str++;
-}
-len = 0;
-while (*(str + len) != ' ' && *(str + len))
-{
-len += 1;
-}
-len += 1;
-col = malloc(sizeof(char) * len);
-if (!col)
-{
-for (k = j - 1; k >= 0; k--)
-{
-free(f[k]);
-}
-free(f);
-return (NULL);
-}
-for (k = 0; k < (len - 1);  k++)
-{
-*(col + k) = *(str++);
-}
-*(col + k) = '\0';
-*(f + j) = col;
-if (j < (count - 1))
-{
-j++;
-}
-}
-*(f + j) = NULL;
-return (f);
+	int i, j, k, len;
+	char *str;
+
+	if (ac == 0 || av == NULL)
+		return (NULL);
+
+	for (i = 0; i < ac; i++)
+	{
+		for (j = 0; av[i][j] != '\0'; j++)
+			len++;
+		len++;
+	}
+
+	str = malloc(sizeof(char) * (len + 1));
+
+	if (str == NULL)
+		return (NULL);
+
+	k = 0;
+
+	for (i = 0; i < ac; i++)
+	{
+		for (j = 0; av[i][j] != '\0'; j++)
+		{
+			str[k] = av[i][j];
+			k++;
+		}
+		str[k] = '\n';
+		k++;
+	}
+
+	return (str);
 }
